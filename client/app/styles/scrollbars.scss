@@ -1,0 +1,23 @@
+::-webkit-scrollbar {
+    border: 1px solid;
+    width: 18px;
+    height: 18px;
+    border-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 4px;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.ct-scroll-vertical {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        border: none;
+    }
+}

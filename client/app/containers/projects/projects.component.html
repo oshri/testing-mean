@@ -1,0 +1,13 @@
+<div class="projects-container">
+    
+    
+    <div class="projects" fxLayout="column">
+        <mat-card   class="project-box" 
+                    *ngFor="let project of projects$ | async "
+                    fxFlex
+                    fxFlexOffset="2"
+                    (click)="openProjectDialog(project)">
+            <span>{{project.name}}</span>
+        </mat-card>
+    </div>
+</div>

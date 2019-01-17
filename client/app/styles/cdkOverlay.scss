@@ -1,0 +1,53 @@
+.cdk-overlay-container {
+
+	.cdk-overlay-pane{
+		
+		.mat-select-panel {
+			background-color: white;
+			box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+			border-radius: 4px;
+		}
+
+		.mat-menu-panel{
+			background-color: white;
+			box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+			border-radius: 4px;
+
+			.mat-menu-content{
+				padding: 0;
+
+				.networks{
+					width: 180px;
+	
+					.network{
+						cursor: pointer;
+						border-bottom: 1px solid #e1dede;
+						padding: 10px;
+	
+						&:hover{
+							background-color: #f3f3f3;
+						}
+					}
+				}
+			}
+
+			
+		}
+
+		.mat-datepicker-content, .mat-snack-bar-container{
+			background-color: white;
+			box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+		}
+
+		.mat-dialog-container {
+			padding: 0;
+			overflow: hidden;
+
+			.mat-dialog-content{
+				background-color: white;
+				padding: 0;
+    			margin: 0;
+			}
+		}
+	}
+}

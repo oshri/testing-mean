@@ -1,0 +1,40 @@
+
+:host(mean-project-form) {
+
+	.modal-header {
+		padding: 8px;
+		background-color: #160358;
+
+		.modal-title {
+			
+			h1 {
+				font-weight: 400;
+				color: white;
+				margin: 0;
+			}
+		}
+
+		.close {
+			background-color: transparent;
+			box-shadow: none;
+			color: white;
+		}
+	}
+
+	.modal-content {
+
+		.form {
+			padding: 10px;
+
+			.mat-form-field-disabled{
+				opacity: 0.5;
+			}
+
+			.dialog-actions{
+				padding: 5px;
+				border-top: 1px solid lightgray;
+			}
+		}
+	}
+
+}

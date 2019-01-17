@@ -1,0 +1,9 @@
+$mean-app-primary: mat-palette($mat-pink, 600);
+$mean-app-accent:  mat-palette($mat-orange, A400, A200, A100);
+$mean-app-warn:    mat-palette($mat-red);
+
+$mean-app-theme: mat-light-theme(
+	$mean-app-primary,
+	$mean-app-accent,
+	$mean-app-warn
+);

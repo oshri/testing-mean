@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "node",
+	  "outDir": "../out-tsc/spec",
+		"module": "commonjs",
+		"sourceMap": true,
+	  "types": [
+			"node",
+			"jest"
+		],
+		"target": "es6",
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+	},
+	"files": [],
+	"include": [
+	  "**/*.spec.ts",
+	  "**/*.d.ts"
+	]
+}

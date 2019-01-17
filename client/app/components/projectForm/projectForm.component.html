@@ -1,0 +1,36 @@
+<div class="modal-header" fxLayout="row" fxLayoutAlign="space-between center">
+	<div class="modal-title" fxLayout="row" fxLayoutAlign="space-between center">
+		<h1 matDialogTitle>Project</h1>
+	</div>
+
+	<button class="close" mat-mini-fab (click)="dialogRef.close()">
+		<mat-icon>close</mat-icon>
+	</button>
+</div>
+		
+<mat-dialog-content  class="modal-content" fxLayout="column" fxFlexFill>
+	<form class="form" [formGroup]="projectForm" (ngSubmit)="newProject()" novalidate fxLayout="column" fxLayoutAlign="space-between center">
+		<mat-form-field  appearance="outline" fxFill>
+			<mat-label>Name</mat-label>
+			<input matInput placeholder="Name" formControlName="name">
+			<mat-spinner 	[diameter]="20"
+							color="accent"
+							mode="indeterminate"
+							[ngClass]="{'hidden': projectForm.get('name').pending}"
+							matSuffix>
+			</mat-spinner>
+			<mat-error *ngIf="projectForm.get('name').hasError('nameExists')">
+				Project name already taken
+			</mat-error>
+			<mat-error *ngIf="projectForm.get('name').hasError('required')">
+				Required
+			</mat-error>
+		</mat-form-field>
+		
+		<mat-form-field  appearance="outline" fxFill fxFlexOffset="15px">
+			<mat-label>Description</mat-label>
+			<textarea matInput placeholder="Description" formControlName="description"></textarea>
+		</mat-form-field>
+		
+	</form>
+</mat-dialog-content>
