@@ -1,6 +1,6 @@
 {
   "name": "testing-mean",
-  "version": "0.3.5",
+  "version": "0.0.1",
   "author": "Oshri Kdoshim <oshri.kdoshim@citi.com>",
   "description": "Testing Mongo Express Angular NodeJs usign typescript",
   "scripts": {

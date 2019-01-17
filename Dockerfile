@@ -1,6 +1,6 @@
 FROM centos:7.4.1708
-ENV http_proxy=http://natcpproxy.wlb2.nam.nsroot.net:9999
-ENV https_proxy=http://natcpproxy.wlb2.nam.nsroot.net:9999
+ENV http_proxy=
+ENV https_proxy=
 
 MAINTAINER Oshri Kdosim <cms.x.seo@gmail.com>
 
