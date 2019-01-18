@@ -84,6 +84,23 @@ export class ProjectsRoute {
 				}
 			}
 		);
+
+		router.delete(
+			'/projects/:name',
+			async (req: Request, res: Response, next: NextFunction) => {
+				try {
+					const name = req.params.name;
+					const deleted = await ProjectClass.deleteProject(name);
+					res
+						.status(200)
+						.send({
+							message: `ProjectName: ${name}, was successfully deleted`
+						});
+				} catch (error) {
+					logErrorAndNext('', {}, {}, next, res, 400);
+				}
+			}
+		);
 	}
 
 	public async createProject(

@@ -20,9 +20,24 @@ export class ProjectsSrv {
 			.pipe(catchError((error: Response) => this.handleError(error)));
 	}
 
-	isNameExist(name: string): Observable<boolean> {
+	deleteProject(projectName: string): Observable<object> {
+		return this.http.delete(`${this.config.restUrl}/projects/${projectName}`)
+			.pipe(catchError((error: Response) => this.handleError(error)));
+	}
+
+	createProject(project: IProject): Observable<object> {
+		return this.http.post(`${this.config.restUrl}/projects`, project)
+			.pipe(catchError((error: Response) => this.handleError(error)));
+	}
+
+	updateProject(project: IProject): Observable<object> {
+		return this.http.put(`${this.config.restUrl}/projects/${project.name}`, project)
+			.pipe(catchError((error: Response) => this.handleError(error)));
+	}
+
+	isNameExist(projectName: string): Observable<boolean> {
 		return this.http
-			.get(`${this.config.restUrl}/projects/${name}/exist`)
+			.get(`${this.config.restUrl}/projects/${projectName}/exist`)
 			.pipe(
 				map((res: { exist: boolean }): boolean => res.exist),
 				catchError((error, caught) => {

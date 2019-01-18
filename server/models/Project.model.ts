@@ -32,16 +32,16 @@ export class ProjectClass {
 
 	static async getProjects(): Promise<Object[]> {
 		try {
-			return await Project.find({});
+			return await Project.find({ deleted: false });
 		} catch (error) {
 			console.error('Failed to get projects', error);
 			return null;
 		}
 	}
 
-	static async deleteProject(projectId: any): Promise<any> {
+	static async deleteProject(projectName: string): Promise<any> {
 		try {
-			return await Project.update({ _id: projectId }, { deleted: true });
+			return await Project.update({ name: projectName }, { deleted: true });
 		} catch (error) {
 			console.error('Failed to delete project', error);
 		}

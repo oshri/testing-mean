@@ -1,13 +1,27 @@
 <div class="projects-container">
-    
-    
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h1>Projects</h1>
+        <button mat-fab color="accent" (click)="openProjectDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
     <div class="projects" fxLayout="column">
         <mat-card   class="project-box" 
-                    *ngFor="let project of projects$ | async "
+                    *ngFor="let project of projectsSubject$ | async"
+                    fxLayout="row"
+                    fxLayoutAlign="space-between center"
                     fxFlex
-                    fxFlexOffset="2"
-                    (click)="openProjectDialog(project)">
+                    fxFlexOffset="2">
             <span>{{project.name}}</span>
+            
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                <button class="radius-btn" (click)="openProjectDialog(project)" matTooltip="Edit" fxLayout="row" fxLayoutAlign="space-around center">
+                    <mat-icon class="edit-icon" aria-label="Edit">create</mat-icon>
+                </button>
+                <button class="radius-btn" (click)="onRemove(project.name)" matTooltip="Delete" fxFlexOffset="20" fxLayout="row" fxLayoutAlign="space-around center">
+                    <mat-icon aria-label="Delete">delete_outline</mat-icon>
+                </button>
+            </div>
         </mat-card>
     </div>
 </div>

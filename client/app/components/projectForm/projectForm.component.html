@@ -13,12 +13,6 @@
 		<mat-form-field  appearance="outline" fxFill>
 			<mat-label>Name</mat-label>
 			<input matInput placeholder="Name" formControlName="name">
-			<mat-spinner 	[diameter]="20"
-							color="accent"
-							mode="indeterminate"
-							[ngClass]="{'hidden': projectForm.get('name').pending}"
-							matSuffix>
-			</mat-spinner>
 			<mat-error *ngIf="projectForm.get('name').hasError('nameExists')">
 				Project name already taken
 			</mat-error>
@@ -29,8 +23,23 @@
 		
 		<mat-form-field  appearance="outline" fxFill fxFlexOffset="15px">
 			<mat-label>Description</mat-label>
-			<textarea matInput placeholder="Description" formControlName="description"></textarea>
+			<textarea 	matInput
+						placeholder="Description"
+						rows="10"
+						cols="50"
+						formControlName="description"
+						enabled="false">
+			</textarea>
 		</mat-form-field>
 		
+		<div class="dialog-actions" fxLayout="row" fxLayoutAlign="end center" fxFlexFill>
+			<button 	class="create-project"
+						mat-stroked-button
+						color="accent"
+						[disabled]="projectForm.invalid"
+						(click)="newProject()">
+				{{isUpdate ? 'Update' : 'Create'}}
+			</button>
+		</div>
 	</form>
 </mat-dialog-content>

@@ -14,6 +14,7 @@ import { AppRoutingModule } from './appRouting.module';
 import { Config } from './services/config/config.service';
 import { GeneralHttpInterceptor } from './services/httpInterceptor/httpInterceptor.service';
 import { ProjectsSrv } from './services/projects/projects.service';
+import { SnackBar } from './services/snackBar/snackBar.service';
 
 // Containers
 import { AppComponent } from './containers/app/app.component';
@@ -37,6 +38,7 @@ export const IMPORT = [
 export const PROVIDERS = [
 	Config,
 	ProjectsSrv,
+	SnackBar,
 	{
 		provide: HTTP_INTERCEPTORS,
 		useClass: GeneralHttpInterceptor,

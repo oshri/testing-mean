@@ -33,6 +33,21 @@
 			.dialog-actions{
 				padding: 5px;
 				border-top: 1px solid lightgray;
+
+				button.create-project{
+					color: white;
+					background-color: #3338b4;
+					border-color: #3338b4;
+					margin-top: 20px;
+
+					&:disabled{
+						background-color: lightgray;
+						border-color: gray;
+						color: gray;
+					}
+			
+				}
+
 			}
 		}
 	}

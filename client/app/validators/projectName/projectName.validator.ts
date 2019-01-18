@@ -14,6 +14,7 @@ export function projectNameValidator(
 	projectsSrv: ProjectsSrv
 ): AsyncValidatorFn {
 	return (control: AbstractControl): Observable<ValidationErrors | null> => {
+		
 		if (control.value == null || typeof control.value !== 'string') {
 			return null;
 		}
