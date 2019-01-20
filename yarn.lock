@@ -446,6 +446,13 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/bson@*":
+  version "1.0.11"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/@types/bson/-/bson-1.0.11.tgz?dl=https://registry.yarnpkg.com/@types/bson/-/bson-1.0.11.tgz#c95ad69bb0b3f5c33b4bb6cc86d86cafb273335c"
+  integrity sha1-yVrWm7Cz9cM7S7bMhthsr7JzM1w=
+  dependencies:
+    "@types/node" "*"
+
 "@types/connect@*":
   version "3.4.32"
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/@types/connect/-/connect-3.4.32.tgz?dl=https://registry.yarnpkg.com/@types/connect/-/connect-3.4.32.tgz#aa0e9616b9435ccad02bc52b5b454ffc2c70ba28"
@@ -503,10 +510,31 @@
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/@types/jest/-/jest-23.3.12.tgz?dl=https://registry.yarnpkg.com/@types/jest/-/jest-23.3.12.tgz#7e0ced251fa94c3bc2d1023d4b84b2992fa06376"
   integrity sha1-fgztJR+pTDvC0QI9S4SymS+gY3Y=
 
+"@types/joi@^14.0.1":
+  version "14.0.1"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/@types/joi/-/joi-14.0.1.tgz?dl=https://registry.yarnpkg.com/@types/joi/-/joi-14.0.1.tgz#739be8a8899a75631a3c9f15611e54bbab06c024"
+  integrity sha1-c5voqImadWMaPJ8VYR5Uu6sGwCQ=
+
 "@types/mime@*":
   version "2.0.0"
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/@types/mime/-/mime-2.0.0.tgz?dl=https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
   integrity sha1-WnMG42fFObn2VDSZ3o3VGfrDeos=
+
+"@types/mongodb@*", "@types/mongodb@^3.0.9":
+  version "3.1.19"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/@types/mongodb/-/mongodb-3.1.19.tgz?dl=https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.1.19.tgz#40c4310986888975771857810aa47fd3ea8e1acf"
+  integrity sha1-QMQxCYaIiXV3GFeBCqR/0+qOGs8=
+  dependencies:
+    "@types/bson" "*"
+    "@types/node" "*"
+
+"@types/mongoose@^5.0.5":
+  version "5.3.8"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/@types/mongoose/-/mongoose-5.3.8.tgz?dl=https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.3.8.tgz#d6d466d868136cae3404ff2292afe3d0f936acc4"
+  integrity sha1-1tRm2GgTbK40BP8ikq/j0Pk2rMQ=
+  dependencies:
+    "@types/mongodb" "*"
+    "@types/node" "*"
 
 "@types/morgan@^1.7.35":
   version "1.7.35"
@@ -4301,6 +4329,11 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
+hoek@6.x.x:
+  version "6.1.2"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/hoek/-/hoek-6.1.2.tgz?dl=https://registry.yarnpkg.com/hoek/-/hoek-6.1.2.tgz#99e6d070561839de74ee427b61aa476bd6bddfd6"
+  integrity sha1-mebQcFYYOd507kJ7YapHa9a939Y=
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/home-or-tmp/-/home-or-tmp-2.0.0.tgz?dl=https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -5010,6 +5043,13 @@ isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/isarray/-/isarray-1.0.0.tgz?dl=https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
+isemail@3.x.x:
+  version "3.2.0"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/isemail/-/isemail-3.2.0.tgz?dl=https://registry.yarnpkg.com/isemail/-/isemail-3.2.0.tgz#59310a021931a9fb06bbb51e155ce0b3f236832c"
+  integrity sha1-WTEKAhkxqfsGu7UeFVzgs/I2gyw=
+  dependencies:
+    punycode "2.x.x"
+
 isexe@^2.0.0:
   version "2.0.0"
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/isexe/-/isexe-2.0.0.tgz?dl=https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -5495,6 +5535,15 @@ jju@^1.1.0:
   version "1.4.0"
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/jju/-/jju-1.4.0.tgz?dl=https://registry.yarnpkg.com/jju/-/jju-1.4.0.tgz#a3abe2718af241a2b2904f84a625970f389ae32a"
   integrity sha1-o6vicYryQaKykE+EpiWXDzia4yo=
+
+joi@^14.3.1:
+  version "14.3.1"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/joi/-/joi-14.3.1.tgz?dl=https://registry.yarnpkg.com/joi/-/joi-14.3.1.tgz#164a262ec0b855466e0c35eea2a885ae8b6c703c"
+  integrity sha1-FkomLsC4VUZuDDXuoqiFrotscDw=
+  dependencies:
+    hoek "6.x.x"
+    isemail "3.x.x"
+    topo "3.x.x"
 
 js-base64@^2.1.8:
   version "2.5.0"
@@ -6574,13 +6623,6 @@ moment@2.22.2:
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/moment/-/moment-2.23.0.tgz?dl=https://registry.yarnpkg.com/moment/-/moment-2.23.0.tgz#759ea491ac97d54bac5ad776996e2a58cc1bc225"
   integrity sha1-dZ6kkayX1UusWtd2mW4qWMwbwiU=
 
-mongod@^2.0.0:
-  version "2.0.0"
-  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/mongod/-/mongod-2.0.0.tgz?dl=https://registry.yarnpkg.com/mongod/-/mongod-2.0.0.tgz#ceec4b72305190e85d6f8fac992f15a47eb18c74"
-  integrity sha1-zuxLcjBRkOhdb4+smS8VpH6xjHQ=
-  dependencies:
-    promise-queue "^2.2.3"
-
 mongodb-core@3.1.9:
   version "3.1.9"
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/mongodb-core/-/mongodb-core-3.1.9.tgz?dl=https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-3.1.9.tgz#c31ee407bf932b0149eaed775c17ee09974e4ca3"
@@ -6605,10 +6647,10 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz?dl=https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha1-O6n5H6UHtRhtOZ+0CFS/8Y+1Y+Q=
 
-mongoose@^5.4.4:
-  version "5.4.4"
-  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/mongoose/-/mongoose-5.4.4.tgz?dl=https://registry.yarnpkg.com/mongoose/-/mongoose-5.4.4.tgz#923923cd39a03b970c269f828322990ea163f9a8"
-  integrity sha1-kjkjzTmgO5cMJp+CgyKZDqFj+ag=
+mongoose@^5.4.5:
+  version "5.4.5"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/mongoose/-/mongoose-5.4.5.tgz?dl=https://registry.yarnpkg.com/mongoose/-/mongoose-5.4.5.tgz#264f8a0bc507ce94f4e22a9788e03e83c6d60ec3"
+  integrity sha1-Jk+KC8UHzpT04iqXiOA+g8bWDsM=
   dependencies:
     async "2.6.1"
     bson "~1.1.0"
@@ -7887,11 +7929,6 @@ promise-inflight@^1.0.1:
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/promise-inflight/-/promise-inflight-1.0.1.tgz?dl=https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-promise-queue@^2.2.3:
-  version "2.2.5"
-  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/promise-queue/-/promise-queue-2.2.5.tgz?dl=https://registry.yarnpkg.com/promise-queue/-/promise-queue-2.2.5.tgz#2f6f5f7c0f6d08109e967659c79b88a9ed5e93b4"
-  integrity sha1-L29ffA9tCBCelnZZx5uIqe1ek7Q=
-
 promise@^7.1.1:
   version "7.3.1"
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/promise/-/promise-7.3.1.tgz?dl=https://registry.yarnpkg.com/promise/-/promise-7.3.1.tgz#064b72602b18f90f29192b8b1bc418ffd1ebd3bf"
@@ -8010,15 +8047,15 @@ punycode@1.3.2:
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/punycode/-/punycode-1.3.2.tgz?dl=https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
   integrity sha1-llOgNvt8HuQjQvIyXM7v6jkmxI0=
 
+punycode@2.x.x, punycode@^2.1.0, punycode@^2.1.1:
+  version "2.1.1"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/punycode/-/punycode-2.1.1.tgz?dl=https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
+  integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
+
 punycode@^1.2.4, punycode@^1.4.1:
   version "1.4.1"
   resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/punycode/-/punycode-1.4.1.tgz?dl=https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
   integrity sha1-wNWmOycYgArY4esPpSachN1BhF4=
-
-punycode@^2.1.0, punycode@^2.1.1:
-  version "2.1.1"
-  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/punycode/-/punycode-2.1.1.tgz?dl=https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
-  integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
 
 puppeteer@^1.11.0:
   version "1.11.0"
@@ -9730,6 +9767,13 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+topo@3.x.x:
+  version "3.0.3"
+  resolved "http://artifactory.nam.nsroot.net:8081/artifactory/api/npm/citi-tlv-npm/topo/-/topo-3.0.3.tgz?dl=https://registry.yarnpkg.com/topo/-/topo-3.0.3.tgz#d5a67fb2e69307ebeeb08402ec2a2a6f5f7ad95c"
+  integrity sha1-1aZ/suaTB+vusIQC7Coqb1962Vw=
+  dependencies:
+    hoek "6.x.x"
 
 touch@^3.1.0:
   version "3.1.0"

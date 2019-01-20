@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError as _throw } from 'rxjs';
 import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { Config } from '../config/config.service';
-import { IProject } from '../../../../models';
+import { IProject } from '../../models';
 
 @Injectable()
 export class ProjectsSrv {
@@ -20,8 +20,8 @@ export class ProjectsSrv {
 			.pipe(catchError((error: Response) => this.handleError(error)));
 	}
 
-	deleteProject(projectName: string): Observable<object> {
-		return this.http.delete(`${this.config.restUrl}/projects/${projectName}`)
+	deleteProject(projectId: string): Observable<object> {
+		return this.http.delete(`${this.config.restUrl}/projects/${projectId}`)
 			.pipe(catchError((error: Response) => this.handleError(error)));
 	}
 
@@ -30,8 +30,8 @@ export class ProjectsSrv {
 			.pipe(catchError((error: Response) => this.handleError(error)));
 	}
 
-	updateProject(project: IProject): Observable<object> {
-		return this.http.put(`${this.config.restUrl}/projects/${project.name}`, project)
+	updateProject(projectId: string, update: IProject): Observable<object> {
+		return this.http.put(`${this.config.restUrl}/projects/${projectId}`, update)
 			.pipe(catchError((error: Response) => this.handleError(error)));
 	}
 

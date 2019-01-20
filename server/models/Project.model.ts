@@ -39,20 +39,28 @@ export class ProjectClass {
 		}
 	}
 
-	static async deleteProject(projectName: string): Promise<any> {
+	static async deleteProject(projectId: string): Promise<any> {
 		try {
-			return await Project.update({ name: projectName }, { deleted: true });
+			return await Project.deleteOne({ _id: projectId });
 		} catch (error) {
 			console.error('Failed to delete project', error);
 		}
 	}
 
-	static async updateProjectByName(
-		projectName: string,
-		update: object
+	static async updateProjectById(
+		projectId: string,
+		update: IProject
 	): Promise<IProjectModel> {
 		try {
-			return await Project.findOneAndUpdate({name: projectName}, update);
+			
+			const uniqName = await ProjectClass.findProjectByName(update.name);
+			if (uniqName) { return };
+
+			const project = await Project.findById(projectId);
+			if (!project) { return };
+			project.set(update);
+
+			return await project.save();
 		} catch (error) {
 			console.error('Failed to update project', error);
 		}

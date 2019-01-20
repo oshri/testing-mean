@@ -2,6 +2,7 @@ import { NextFunction, Request, Response, Router } from 'express';
 import { IProject } from '../../models';
 import { ProjectClass, Project, IProjectModel } from '../models/Project.model';
 import logErrorAndNext from '../utils/logErrorAndNext';
+import * as Joi from 'joi';
 
 export class ProjectsRoute {
 	public static createRoutes(router: Router) {
@@ -38,9 +39,9 @@ export class ProjectsRoute {
 					const existing = await ProjectClass.findProjectByName(name);
 
 					if (existing) {
-						res.status(200).json({exist: true});
+						res.status(200).json({ exist: true });
 					}
-						res.status(200).json({exist: false});
+					res.status(200).json({ exist: false });
 				} catch (error) {
 					logErrorAndNext('', {}, {}, next, res, 400);
 				}
@@ -51,16 +52,12 @@ export class ProjectsRoute {
 			'/projects',
 			async (req: Request, res: Response, next: NextFunction) => {
 				try {
-					if (!req.body.name) {
-						logErrorAndNext('Missing data', {}, {}, next, res, 400);
-					} else {
-						const project = await new ProjectsRoute().createProject(
-							req,
-							res,
-							next
-						);
-						res.status(200).json(project);
-					}
+					const project = await new ProjectsRoute().createProject(
+						req,
+						res,
+						next
+					);
+					res.status(200).json(project);
 				} catch (error) {
 					logErrorAndNext('', {}, {}, next, res, 400);
 				}
@@ -68,17 +65,16 @@ export class ProjectsRoute {
 		);
 
 		router.put(
-			'/projects/:name',
+			'/projects/:id',
 			async (req: Request, res: Response, next: NextFunction) => {
 				try {
-					const { name } = req.params;
-					const { update } = req.body;
-					await ProjectClass.updateProjectByName(name, update);
-					res
-						.status(200)
-						.send({
-							message: `ProjectName: ${name}, was successfully updated`
-						});
+					const update = await new ProjectsRoute().updateProject(req,
+						res,
+						next);
+
+					res.status(200).send({
+						message: `ProjectName: ${req.body.name}, was successfully updated`
+					});
 				} catch (error) {
 					logErrorAndNext('', {}, {}, next, res, 400);
 				}
@@ -86,16 +82,14 @@ export class ProjectsRoute {
 		);
 
 		router.delete(
-			'/projects/:name',
+			'/projects/:id',
 			async (req: Request, res: Response, next: NextFunction) => {
 				try {
-					const name = req.params.name;
-					const deleted = await ProjectClass.deleteProject(name);
-					res
-						.status(200)
-						.send({
-							message: `ProjectName: ${name}, was successfully deleted`
-						});
+					const { id } = req.params;
+					const deleted = await ProjectClass.deleteProject(id);
+					res.status(200).send({
+						message: `Project was successfully deleted`
+					});
 				} catch (error) {
 					logErrorAndNext('', {}, {}, next, res, 400);
 				}
@@ -108,10 +102,21 @@ export class ProjectsRoute {
 		res: Response,
 		next: NextFunction
 	) {
+		const { error } = this.validateBody(req.body);
+		if (error) {
+			logErrorAndNext(
+				'Create Project',
+				error.details,
+				{},
+				next,
+				res,
+				400
+			);
+		}
+
 		try {
 			const { name } = req.body;
 			const existing = await ProjectClass.findProjectByName(name);
-
 			if (existing) {
 				logErrorAndNext(
 					`project '${name}' already exists`,
@@ -127,5 +132,52 @@ export class ProjectsRoute {
 		} catch (error) {
 			return next(error);
 		}
+	}
+
+	public async updateProject(
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) {
+		const { error } = this.validateBody(req.body);
+		if (error) {
+			logErrorAndNext(
+				'Update Project',
+				error.details,
+				{},
+				next,
+				res,
+				400
+			);
+		}
+
+		try {
+			const { id } = req.params;
+			const updated = await ProjectClass.updateProjectById(id, req.body);
+			if (!updated) {
+				logErrorAndNext(
+					`ProjectName: ${req.body.name}, allready exist`,
+					{},
+					{},
+					next,
+					res,
+					400
+				);
+			}
+
+			return updated;
+		} catch (error) {
+			return next(error);
+		}
+	}
+
+	private validateBody(body: object) {
+		const schema = {
+			name: Joi.string().min(3).required(),
+			description: Joi.string(),
+			deleted: Joi.boolean()
+		};
+
+		return Joi.validate(body, schema);
 	}
 }

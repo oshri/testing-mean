@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { projectNameValidator } from '../../validators/projectName/projectName.validator';
 import { ProjectsSrv } from '../../services/projects/projects.service';
 import { SnackBar } from '../../services/snackBar/snackBar.service';
-import { IProject } from '../../../../models';
+import { IProject } from '../../models';
 
 @Component({
 	selector: 'mean-project-form',
@@ -28,17 +28,17 @@ export class ProjectFormComponent implements OnInit {
 	}
 
 	public newProject() {
-		const project: IProject = this.projectForm.value;
+		const update: IProject = this.projectForm.value;
 		if (this.isUpdate) {
-			this.projectsSrv.updateProject(project).subscribe((res) => {
-				this.snackBar.open(`Project ${project.name} was updated`);
+			this.projectsSrv.updateProject(this.data._id, update).subscribe((res) => {
+				this.snackBar.open(`Project ${update.name} was updated`);
 				this.dialogRef.close({update: true});
-			}, (err: any) => this.snackBar.open(`Project ${project.name} not updated`));
+			}, (err: any) => this.snackBar.open(`Project ${this.data.name} not updated`));
 		} else {
-			this.projectsSrv.createProject(project).subscribe((res) => {
-				this.snackBar.open(`Project ${project.name} was created`);
+			this.projectsSrv.createProject(update).subscribe((res) => {
+				this.snackBar.open(`Project ${update.name} was created`);
 				this.dialogRef.close({update: true});
-			}, (err: any) => this.snackBar.open(`Project ${project.name} not created`));
+			}, (err: any) => this.snackBar.open(`Project ${update.name} not created`));
 		}
 	}
 

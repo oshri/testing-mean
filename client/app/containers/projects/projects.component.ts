@@ -3,7 +3,7 @@ import { ProjectsSrv } from '../../services/projects/projects.service';
 import { SnackBar } from '../../services/snackBar/snackBar.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { IProject } from '../../../../models';
+import { IProject } from '../../models';
 import { ProjectFormComponent } from '../../components/projectForm/projectForm.component';
 
 @Component({
@@ -37,11 +37,11 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 		this.projectsSubscribe$.unsubscribe();
 	}
 
-	onRemove(projectName: string): void {
-		this.projectsSrv.deleteProject(projectName).subscribe((res: any) => {
-			this.projects = this.projects.filter((project: IProject) => project.name !== projectName);
+	onRemove(project: IProject): void {
+		this.projectsSrv.deleteProject(project._id).subscribe((res: any) => {
+			this.projects = this.projects.filter((child: IProject) => child.name !== project.name);
 			this.projectsSubject$.next(this.projects);
-			this.snackBar.open(`The project ${projectName} was deleted`);
+			this.snackBar.open(`The project ${project.name} was deleted`);
 		}, (error: any) => this.snackBar.open(error.message));
 	}
 
