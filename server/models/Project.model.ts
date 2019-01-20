@@ -3,8 +3,7 @@ import { IProject } from '../../models';
 
 export const ProjectKeys = {
 	name: { type: String, maxlength: 32, required: true, unique: true},
-	description: { type: String, required: false },
-	deleted: { type: Boolean, default: false }
+	description: { type: String, required: false }
 };
 
 export class ProjectClass {
