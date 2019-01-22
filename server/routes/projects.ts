@@ -3,7 +3,7 @@ import { IProject } from '../../models';
 import { ProjectClass, Project, IProjectModel } from '../models/Project.model';
 import logErrorAndNext from '../utils/logErrorAndNext';
 import * as Joi from 'joi';
-import { asyncMiddleware }  from '../utils/middlewares';
+import { asyncMiddleware , validateMongoModelId}  from '../utils/middlewares';
 export class ProjectsRoute {
 	public static createRoutes(router: Router) {
 		router.get(
@@ -15,10 +15,11 @@ export class ProjectsRoute {
 		);
 
 		router.get(
-			'/projects/:name',
+			'/projects/:id',
+			validateMongoModelId,
 			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
-				const { name } = req.params;
-				const project = await ProjectClass.findProjectByName(name);
+				const { id } = req.params;
+				const project = await ProjectClass.findProjectBId(id);
 				res.status(200).json(project);
 			})
 		);
@@ -46,6 +47,7 @@ export class ProjectsRoute {
 
 		router.put(
 			'/projects/:id',
+			validateMongoModelId,
 			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
 				const update = await new ProjectsRoute().updateProject(req, res, next);
 
@@ -57,6 +59,7 @@ export class ProjectsRoute {
 
 		router.delete(
 			'/projects/:id',
+			validateMongoModelId,
 			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
 				const { id } = req.params;
 				const deleted = await ProjectClass.deleteProject(id);
@@ -143,7 +146,7 @@ export class ProjectsRoute {
 
 	private validateBody(body: object) {
 		const schema = {
-			name: Joi.string().min(3).required(),
+			name: Joi.string().min(5).max(50).required(),
 			description: Joi.string(),
 			deleted: Joi.boolean()
 		};

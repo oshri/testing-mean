@@ -2,7 +2,7 @@ import { Document, Schema, Model, model } from 'mongoose';
 import { IProject } from '../../models';
 
 export const ProjectKeys = {
-	name: { type: String, maxlength: 32, required: true, unique: true},
+	name: { type: String, minlength: 5, maxlength: 50, required: true},
 	description: { type: String, required: false }
 };
 
@@ -11,6 +11,15 @@ export class ProjectClass {
 	static async findProjectByName(projectName: String): Promise<Object> {
 		try{
 			return await Project.findOne().where({name: projectName}).exec();
+		} catch (error) {
+			return error;
+		}
+
+	}
+
+	static async findProjectBId(projectId: String): Promise<Object> {
+		try{
+			return await Project.findById(projectId).exec();
 		} catch (error) {
 			return error;
 		}
@@ -31,7 +40,7 @@ export class ProjectClass {
 
 	static async getProjects(): Promise<Object[]> {
 		try {
-			return await Project.find({ deleted: false });
+			return await Project.find();
 		} catch (error) {
 			console.error('Failed to get projects', error);
 			return null;

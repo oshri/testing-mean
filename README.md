@@ -26,6 +26,14 @@ use testing-mean
 db.createUser({user: "admin", pwd: "admin", roles: ["dbOwner"]})
 ```
 
+## Create DB for testing:
+
+```sh
+mongo
+use testing-mean-testing
+db.createUser({user: "admin", pwd: "admin", roles: ["dbOwner"]})
+```
+
 ## Run
 ### Development mode
 `yarn dev`: [concurrently](https://github.com/kimmobrunfeldt/concurrently) execute MongoDB, Angular build, TypeScript compiler and Express server.

@@ -2,7 +2,7 @@
     "logLevel": "debug",
     "port": 8080,
     "mongodb": {
-        "url": "mongodb://localhost:27017/testing-mean",
+        "url": "mongodb://localhost:27017/testing-mean-testing",
         "username": "admin",
         "password": "admin"
     }
