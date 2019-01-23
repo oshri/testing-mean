@@ -1,7 +1,7 @@
 {
   "name": "testing-mean",
   "version": "0.0.1",
-  "author": "Oshri Kdoshim <oshri.kdoshim@citi.com>",
+  "author": "Oshri Kdoshim <cms.x.seo@gmail.com>",
   "description": "Testing Mongo Express Angular NodeJs usign typescript",
   "scripts": {
     "dev": "concurrently --kill-others \"mongod\" \"npm run server:run\" \"ng serve --host 0.0.0.0 --disableHostCheck --proxy-config proxy.conf.json\"",

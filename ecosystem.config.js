@@ -1,7 +1,7 @@
 module.exports = {
 	apps: [
 		{
-			name: 'bc-connector',
+			name: 'testing-mean',
 			script: './dist/server/server.js',
 			instances: 3,
 			autorestart: true,
