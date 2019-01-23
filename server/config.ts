@@ -21,10 +21,13 @@ const CONFIG = () => {
 			default: 8080,
 			env: 'PORT'
 		},
-		mongodbUri: {
-			doc: 'URL of MongoDB',
-			format: '*',
-			env: 'MONGODB_URI'
+		mongodb: {
+			uri: {
+				doc: 'URL of MongoDB',
+				format: String,
+				default: null,
+				env: 'MONGODB_URI'
+			}
 		}
 	});
 

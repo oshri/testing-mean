@@ -4,9 +4,8 @@
   "author": "Oshri Kdoshim <cms.x.seo@gmail.com>",
   "description": "Testing Mongo Express Angular NodeJs usign typescript",
   "scripts": {
-    "start": "NODE_ENV=production pm2-runtime dist/server/server.js -i 0 --name 'app' -u default",
+    "start": "pm2-runtime dist/server/server.js -i 0 --name 'app' -u default",
     "dev": "concurrently --kill-others \"mongod\" \"npm run server:run\" \"ng serve --host 0.0.0.0 --disableHostCheck --proxy-config proxy.conf.json\"",
-    "prod": "NODE_ENV=production pm2 start dist/server/server.js -i 0 --name 'app' -u default",
     "build": "ng build --prod --aot && npm run server:build",
     "server:run": "nodemon",
     "server:build": "tsc -p server",

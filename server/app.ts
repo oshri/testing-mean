@@ -12,10 +12,9 @@ dotenv.config();
 // Routes
 import { ProjectsRoute } from './routes/projects';
 
-
 class App {
 	public app: any;
-	
+
 	public constructor() {
 		this.app = express();
 		this.config();
@@ -24,8 +23,8 @@ class App {
 
 	private config() {
 		this.app.use(bodyParser.json());
-		
-		db(config.get('mongodbUri'));
+
+		db(config.get('mongodb').uri);
 
 		this.app.use(
 			bodyParser.urlencoded({
@@ -48,7 +47,7 @@ class App {
 		router = express.Router();
 
 		ProjectsRoute.createRoutes(router);
-		
+
 		this.app.use('/api', router);
 
 		this.app.use('/', express.static(root('./public')));
