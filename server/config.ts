@@ -22,9 +22,9 @@ const CONFIG = () => {
 			env: 'PORT'
 		},
 		mongodbUri: {
-			doc: "URL of MongoDB",
-			format: String,
-			env: "MONGODB_URI"
+			doc: 'URL of MongoDB',
+			format: '*',
+			env: 'MONGODB_URI'
 		}
 	});
 
