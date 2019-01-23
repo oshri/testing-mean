@@ -25,7 +25,7 @@ class App {
 	private config() {
 		this.app.use(bodyParser.json());
 		
-		db(config.get('mongodb.url'), config.get('mongodb.username'), config.get('mongodb.password'));
+		db(config.get('mongodbUri'));
 
 		this.app.use(
 			bodyParser.urlencoded({

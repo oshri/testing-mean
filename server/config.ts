@@ -21,27 +21,11 @@ const CONFIG = () => {
 			default: 8080,
 			env: 'PORT'
 		},
-		mongodb: {
-			url: {
-			  doc: "URL of MongoDB",
-			  format: String,
-			  default: null,
-			  env: "MONGODB_URL"
-			},
-			username: {
-			  doc: "Username of MongoDB",
-			  format: String,
-			  default: null,
-			  env: "MONGODB_USERNAME"
-			},
-			password: {
-			  doc: "Password of MongoDB",
-			  format: String,
-			  sensitive: true,
-			  default: null,
-			  env: "MONGODB_PASSWORD"
-			}
-		  }
+		mongodbUri: {
+			doc: "URL of MongoDB",
+			format: String,
+			env: "MONGODB_URI"
+		}
 	});
 
 	const node_env = configSchema.get('env');
