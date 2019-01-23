@@ -1,15 +1,16 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { IProject } from '../../models';
-import { ProjectClass, Project, IProjectModel } from '../models/Project.model';
+import { ProjectSchema } from '../models/Project.model';
 import logErrorAndNext from '../utils/logErrorAndNext';
-import * as Joi from 'joi';
-import { asyncMiddleware , validateMongoModelId}  from '../utils/middlewares';
-export class ProjectsRoute {
+import { asyncMiddleware , validateMongoModelId, validateProjectBody}  from '../middleware';
+import { DbRepository } from '../repositories/dbRepository';
+export class ProjectsRoute extends DbRepository<any>{
+
 	public static createRoutes(router: Router) {
 		router.get(
 			'/projects',
 			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
-				const projects = await ProjectClass.getProjects();
+				const projects = await new ProjectsRoute().getProjects();
 				res.status(200).json(projects);
 			})
 		);
@@ -19,7 +20,7 @@ export class ProjectsRoute {
 			validateMongoModelId,
 			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
 				const { id } = req.params;
-				const project = await ProjectClass.findProjectBId(id);
+				const project = await new ProjectsRoute().getProject(id);
 				res.status(200).json(project);
 			})
 		);
@@ -28,7 +29,7 @@ export class ProjectsRoute {
 			'/projects/:name/exist',
 			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
 				const { name } = req.params;
-				const existing = await ProjectClass.findProjectByName(name);
+				const existing = await new ProjectsRoute().projectExist(name);
 
 				if (existing) {
 					res.status(200).json({ exist: true });
@@ -39,8 +40,9 @@ export class ProjectsRoute {
 
 		router.post(
 			'/projects',
+			validateProjectBody,
 			asyncMiddleware(async (req: Request, res: Response, next: NextFunction) => {
-				const project = await new ProjectsRoute().createProject(req, res, next);
+				const project = await new ProjectsRoute().createProject(req.body);
 				res.status(200).json(project);
 			})
 		);
@@ -49,7 +51,7 @@ export class ProjectsRoute {
 			'/projects/:id',
 			validateMongoModelId,
 			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
-				const update = await new ProjectsRoute().updateProject(req, res, next);
+				const update = await new ProjectsRoute().updateProject(req.params.id, req.body);
 
 				res.status(200).send({
 					message: `ProjectName: ${req.body.name}, was successfully updated`
@@ -62,7 +64,7 @@ export class ProjectsRoute {
 			validateMongoModelId,
 			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
 				const { id } = req.params;
-				const deleted = await ProjectClass.deleteProject(id);
+				const deleted = await new ProjectsRoute().deleteProject(id);
 				res.status(200).send({
 					message: `Project was successfully deleted`
 				});
@@ -70,87 +72,32 @@ export class ProjectsRoute {
 		);
 	}
 
-	public async createProject(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
-		const { error } = this.validateBody(req.body);
-		if (error) {
-			logErrorAndNext(
-				'Create Project',
-				error.details,
-				{},
-				next,
-				res,
-				400
-			);
-		}
-
-		try {
-			const { name } = req.body;
-			const existing = await ProjectClass.findProjectByName(name);
-			if (existing) {
-				logErrorAndNext(
-					`project '${name}' already exists`,
-					{},
-					{},
-					next,
-					res,
-					409
-				);
-			}
-
-			return await ProjectClass.createProject(req.body);
-		} catch (error) {
-			return next(error);
-		}
+	constructor() {
+		super('Project', ProjectSchema);
 	}
 
-	public async updateProject(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
-		const { error } = this.validateBody(req.body);
-		if (error) {
-			logErrorAndNext(
-				'Update Project',
-				error.details,
-				{},
-				next,
-				res,
-				400
-			);
-		}
-
-		try {
-			const { id } = req.params;
-			const updated = await ProjectClass.updateProjectById(id, req.body);
-			if (!updated) {
-				logErrorAndNext(
-					`ProjectName: ${req.body.name}, allready exist`,
-					{},
-					{},
-					next,
-					res,
-					400
-				);
-			}
-
-			return updated;
-		} catch (error) {
-			return next(error);
-		}
+	public getProjects(): Promise<IProject[]> {
+		return this.findAll({limit: 10});
 	}
 
-	private validateBody(body: object) {
-		const schema = {
-			name: Joi.string().min(5).max(50).required(),
-			description: Joi.string(),
-			deleted: Joi.boolean()
-		};
-
-		return Joi.validate(body, schema);
+	public getProject(id: string): Promise<IProject> {
+		return this.findOne(id);
 	}
+
+	public projectExist(name: string): Promise<IProject> {
+		return this.findByItemName(name);
+	}
+
+	public createProject(project: IProject): Promise<boolean> {
+		return this.create(project);
+	}
+
+	public updateProject(id: string, update: IProject): Promise<boolean> {
+		return this.update(id, update);
+	}
+
+	public deleteProject(id: string): Promise<boolean> {
+		return this.delete(id);
+	}
+	
 }

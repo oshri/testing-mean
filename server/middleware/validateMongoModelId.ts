@@ -1,23 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import * as mongoose from 'mongoose';
-import { CustomLogger } from './logger';
-import logErrorAndNext from './logErrorAndNext';
-
-/**
- * 
- * @param handler Express async route function
- */
-export const asyncMiddleware = (handler: Function) => {
-	return async (req: Request, res: Response, next: NextFunction) => {
-		try {
-			await handler(req, res, next);
-		} catch (ex) {
-			// logErrorAndNext(`Route Error`, ex, {}, next, res, 404);
-			next(ex);
-		}
-	}
-};
-
+import logErrorAndNext from '../utils/logErrorAndNext';
 /**
  * 
  * @param req Query mongo by params.id

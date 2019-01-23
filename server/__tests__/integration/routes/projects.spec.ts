@@ -1,13 +1,15 @@
 import * as request from 'supertest';
-import { Project } from '../../models/Project.model';
-import server from '../../server';
+import { Project } from '../../../models/Project.model';
+import * as mongoose from 'mongoose';
+import server from '../../../server';
 
 describe('Projects: Router /api/projects', () => {
 	let app;
 	const baseUrl: string = '/api/projects';
 
-	beforeEach(() => {
+	beforeEach(async() => {
 		app = server.app;
+		await Project.remove({});
 	});
 
 	afterEach(async () => {
@@ -45,6 +47,11 @@ describe('Projects: Router /api/projects', () => {
 			const res = await request(app).get(`${baseUrl}/1`);
 			expect(res.status).toEqual(404);
 		});
+
+		it('should return 404 if no project with the givan id exists', async () => {
+			const res = await request(app).get(`${baseUrl}/${mongoose.Types.ObjectId().toHexString}`);
+			expect(res.status).toEqual(404);
+		});
 	});
 
 	describe('POST /', () => {
@@ -64,10 +71,6 @@ describe('Projects: Router /api/projects', () => {
 			const res = await request(app).post(`${baseUrl}`).send({name: 'Project 1'});
 			const project = await Project.find({name: 'Project 1'});
 			expect(project).not.toBeNull();
-		});
-
-		it('should create new project if it valid', async () => {
-			const res = await request(app).post(`${baseUrl}`).send({name: 'Project 1'});
 			expect(res.body).toHaveProperty('_id');
 			expect(res.body).toHaveProperty('name');
 			expect(res.status).toBe(200);

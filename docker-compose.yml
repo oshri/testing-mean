@@ -1,0 +1,12 @@
+app:
+  build: ./
+  volumes:
+    - ./:/var/www/app
+  ports:
+    - 3000:3000
+  environment:
+    - REDIS_URL=redis://cache
+    - NODE_ENV=production
+    - PORT=3000
+  command:
+    sh -c 'pm2-runtime --env production ./dist/server/server.js'

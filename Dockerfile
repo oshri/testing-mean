@@ -1,18 +1,7 @@
-FROM centos:7.4.1708
-ENV http_proxy=
-ENV https_proxy=
-
-MAINTAINER Oshri Kdosim <cms.x.seo@gmail.com>
-
-RUN groupadd -r default && useradd -r -m -g default default
+FROM node:9-alpine
 
 WORKDIR /
 USER root
-
-RUN yum install -y make gcc-c++
-ARG NODE_DIST_URL
-RUN curl ${NODE_DIST_URL:-https://nodejs.org/dist/v10.14.1/node-v10.14.1-linux-x64.tar.xz} -o /node-linux-x64.tar.xz
-RUN tar -C /usr/local --strip-components 1 -xf /node-linux-x64.tar.xz
 
 ENV YARN_VERSION 1.12.3
 RUN curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
