@@ -4,6 +4,7 @@
   "author": "Oshri Kdoshim <cms.x.seo@gmail.com>",
   "description": "Testing Mongo Express Angular NodeJs usign typescript",
   "scripts": {
+    "start": "pm2-runtime dist/server/server.js -i 0 --name 'app' -u default",
     "dev": "concurrently --kill-others \"mongod\" \"npm run server:run\" \"ng serve --host 0.0.0.0 --disableHostCheck --proxy-config proxy.conf.json\"",
     "prod": "NODE_ENV=production pm2 start dist/server/server.js -i 0 --name 'app' -u default",
     "build": "ng build --prod --aot && npm run server:build",
@@ -16,7 +17,11 @@
     "prebuild": "node ./scripts/version.js",
     "prettier": "prettier --config prettier.config.js",
     "precommit": "lint-staged",
-    "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true"
+    "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true",
+    "heroku-postbuild": "npm run build",
+    "deploy:log": "heroku logs --tail --app testing-mean-app",
+    "deploy:cache:false": "heroku config:set NODE_MODULES_CACHE=false --app testing-mean-app",
+    "deploy:cache:true": "heroku config:set NODE_MODULES_CACHE=true --app testing-mean-app"
   },
   "lint-staged": {
     "*.{js,ts}": [
