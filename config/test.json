@@ -1,7 +1,4 @@
 {
     "logLevel": "debug",
-    "port": 8080,
-    "mongodb": {
-        "uri":"mongodb://localhost:27017/testing-mean-testing"
-    }
+    "port": 8080
 }

@@ -32,7 +32,7 @@ const CONFIG = () => {
 	});
 
 	const node_env = configSchema.get('env');
-	const root = process.env.NODE_ENV === 'production' ? '../../' : '../';
+	const root = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test' ? '../../' : '../';
 
 	const file = path.join(__dirname, `${root}/config/${node_env}.json`);
 	configSchema.loadFile(file);
