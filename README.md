@@ -1,9 +1,9 @@
 # TESTING Mongodb Express Aangular NodeJS with typescript
-[![Maintainability](https://api.codeclimate.com/v1/badges/20b2eee1ee17705792ca/maintainability)](https://codeclimate.com/github/oshri/sideproject-client/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/20b2eee1ee17705792ca/maintainability)](https://codeclimate.com/github/oshri/testing-mean/maintainability)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/20b2eee1ee17705792ca/test_coverage)](https://codeclimate.com/github/oshri/sideproject-client/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/20b2eee1ee17705792ca/test_coverage)](https://codeclimate.com/github/oshri/testing-mean/test_coverage)
 
-[![CircleCI](https://circleci.com/gh/oshri/sideproject-client/tree/master.svg?style=svg)](https://circleci.com/gh/oshri/sideproject-client/tree/master)
+[![CircleCI](https://circleci.com/gh/oshri/testing-mean/tree/master.svg?style=svg)](https://circleci.com/gh/oshri/testing-mean/tree/master)
 
 The frontend and backend is made from scratch. Whole stack in TypeScript.
 
