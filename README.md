@@ -1,5 +1,13 @@
 # TESTING Mongodb Express Aangular NodeJS with typescript
+[![Maintainability](https://api.codeclimate.com/v1/badges/20b2eee1ee17705792ca/maintainability)](https://codeclimate.com/github/oshri/sideproject-client/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/20b2eee1ee17705792ca/test_coverage)](https://codeclimate.com/github/oshri/sideproject-client/test_coverage)
+
+[![CircleCI](https://circleci.com/gh/oshri/sideproject-client/tree/master.svg?style=svg)](https://circleci.com/gh/oshri/sideproject-client/tree/master)
+
 The frontend and backend is made from scratch. Whole stack in TypeScript.
+
+URL: https://testing-mean-app.herokuapp.com/
 
 # Tools and technologies used:
 

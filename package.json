@@ -10,7 +10,7 @@
     "server:run": "nodemon",
     "server:build": "tsc -p server",
     "test:client": "jest --coverage --verbose --watchAll",
-    "test:server": "concurrently --kill-others \"mongod\" \"NODE_ENV=test jest --coverage --config ./jest.server.config.js --watchAll --verbose --forceExit\"",
+    "test:server": "concurrently --kill-others \"mongod\" \"NODE_ENV=test jest --runInBand --coverage --config ./jest.server.config.js --watchAll --verbose --forceExit\"",
     "test-for-build": "jest --clearCache && jest --coverage",
     "testreport": "jest --clearCache --coverage",
     "prebuild": "node ./scripts/version.js",
