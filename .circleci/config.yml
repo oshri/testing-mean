@@ -64,6 +64,7 @@ jobs:
 
       - run: yarn lint-staged
   deploy:
+    machine: true
     steps:
       - checkout
       - run:
