@@ -62,11 +62,11 @@ jobs:
 
       - run: yarn lint-staged
 
-deployment:
-  staging:
-    branch: master
-    heroku:
-      appname: testing-mean-app
+  deployment:
+    staging:
+      branch: master
+      heroku:
+        appname: testing-mean-app
 
 workflows:
   version: 2
