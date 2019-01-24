@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  heroku: circleci/heroku@1.0.0
 jobs:
   server-test-job:
     docker:
@@ -61,17 +63,17 @@ jobs:
           command: yarn
 
       - run: yarn lint-staged
-
-  deployment:
-    staging:
-      branch: master
-      heroku:
-        appname: testing-mean-app
-
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          only-branch: master
 workflows:
   version: 2
   build-deploy:
     jobs:
       - lint-job
       - server-test-job
-      - deployment
+      - deploy
