@@ -1,5 +1,7 @@
+import * as dotenv from 'dotenv';
 import * as convict from 'convict';
 import * as path from 'path';
+dotenv.config();
 
 const CONFIG = () => {
 	const configSchema = convict({
@@ -25,7 +27,7 @@ const CONFIG = () => {
 			uri: {
 				doc: 'URL of MongoDB',
 				format: String,
-				default: null,
+				default: 'info',
 				env: 'MONGODB_URI'
 			}
 		}
