@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test-job:
+  server-test-job:
     docker:
       - image: circleci/node:8.9.4@sha256:24e35a687948c0a1addfa7e6145f5ae22fda663b457139380f3132e16be0ffb5
     steps:
@@ -36,11 +36,7 @@ jobs:
       - run:
           name: Run server tests
           command: |
-            yarn run test:ci
-      - run:
-          name: Upload coverage results to Code Climate
-          command: |
-            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.frontend.json
+            yarn run test:server:ci
   lint-job:
     docker:
       - image: circleci/node:8.9.4@sha256:24e35a687948c0a1addfa7e6145f5ae22fda663b457139380f3132e16be0ffb5
@@ -70,5 +66,5 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - test-job
+      - server-test-job
       - lint-job
