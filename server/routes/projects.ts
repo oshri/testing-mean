@@ -2,14 +2,13 @@ import { NextFunction, Request, Response, Router } from 'express';
 import { IProject } from '../../models';
 import { ProjectSchema } from '../models/Project.model';
 import logErrorAndNext from '../utils/logErrorAndNext';
-import { asyncMiddleware , validateMongoModelId, validateProjectBody}  from '../middleware';
+import { asyncMiddleware, validateMongoModelId, validateProjectBody } from '../middleware';
 import { DbRepository } from '../repositories/dbRepository';
-export class ProjectsRoute extends DbRepository<any>{
-
+export class ProjectsRoute extends DbRepository<any> {
 	public static createRoutes(router: Router) {
 		router.get(
 			'/projects',
-			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
+			asyncMiddleware(async (req: Request, res: Response, next: NextFunction) => {
 				const projects = await new ProjectsRoute().getProjects();
 				res.status(200).json(projects);
 			})
@@ -18,7 +17,7 @@ export class ProjectsRoute extends DbRepository<any>{
 		router.get(
 			'/projects/:id',
 			validateMongoModelId,
-			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
+			asyncMiddleware(async (req: Request, res: Response, next: NextFunction) => {
 				const { id } = req.params;
 				const project = await new ProjectsRoute().getProject(id);
 				res.status(200).json(project);
@@ -27,7 +26,7 @@ export class ProjectsRoute extends DbRepository<any>{
 
 		router.get(
 			'/projects/:name/exist',
-			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
+			asyncMiddleware(async (req: Request, res: Response, next: NextFunction) => {
 				const { name } = req.params;
 				const existing = await new ProjectsRoute().projectExist(name);
 
@@ -50,7 +49,7 @@ export class ProjectsRoute extends DbRepository<any>{
 		router.put(
 			'/projects/:id',
 			validateMongoModelId,
-			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
+			asyncMiddleware(async (req: Request, res: Response, next: NextFunction) => {
 				const update = await new ProjectsRoute().updateProject(req.params.id, req.body);
 
 				res.status(200).send({
@@ -62,7 +61,7 @@ export class ProjectsRoute extends DbRepository<any>{
 		router.delete(
 			'/projects/:id',
 			validateMongoModelId,
-			asyncMiddleware( async (req: Request, res: Response, next: NextFunction) => {
+			asyncMiddleware(async (req: Request, res: Response, next: NextFunction) => {
 				const { id } = req.params;
 				const deleted = await new ProjectsRoute().deleteProject(id);
 				res.status(200).send({
@@ -77,7 +76,7 @@ export class ProjectsRoute extends DbRepository<any>{
 	}
 
 	public getProjects(): Promise<IProject[]> {
-		return this.findAll({limit: 10});
+		return this.findAll({ limit: 10 });
 	}
 
 	public getProject(id: string): Promise<IProject> {
@@ -96,8 +95,7 @@ export class ProjectsRoute extends DbRepository<any>{
 		return this.update(id, update);
 	}
 
-	public deleteProject(id: string): Promise<boolean> {
+	public deleteProject(id: string): Promise<any> {
 		return this.delete(id);
 	}
-	
 }

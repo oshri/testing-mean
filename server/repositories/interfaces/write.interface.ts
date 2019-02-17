@@ -1,3 +1,7 @@
+export interface DeleteWriteResultObject {
+	ok?: number;
+	n?: number;
+}
 export interface IWrite<T> {
 	create(item: T): Promise<boolean>;
 	update(_id: string, item: T): Promise<boolean>;
