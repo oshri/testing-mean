@@ -39,6 +39,43 @@ jobs:
           name: Run server tests
           command: |
             yarn run test:server:ci
+  client-test-job:
+    docker:
+      - image: circleci/node:8.9.4@sha256:24e35a687948c0a1addfa7e6145f5ae22fda663b457139380f3132e16be0ffb5
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo/tmp
+      - run:
+          name:  Download cc-test-reporter
+          command: |
+            mkdir -p tmp/
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
+            chmod +x ./tmp/cc-test-reporter
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - cc-test-reporter
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install yarn
+          command: yarn
+
+      - run:
+          name: Run client tests
+          command: |
+            yarn run test:client:ci
   lint-job:
     docker:
       - image: circleci/node:8.9.4@sha256:24e35a687948c0a1addfa7e6145f5ae22fda663b457139380f3132e16be0ffb5
@@ -77,9 +114,11 @@ workflows:
     jobs:
       - lint-job
       - server-test-job
+      - client-test-job
       - deploy:
           requires:
             - server-test-job
+            - client-test-job
           filters:
             branches:
               only: master

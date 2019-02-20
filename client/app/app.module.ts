@@ -22,6 +22,7 @@ import { ProjectsComponent } from './containers/projects/projects.component';
 
 // Components
 import { ProjectFormComponent } from './components/projectForm/projectForm.component';
+import { NotFoundComponent } from './containers/notFound/notFound.component';
 
 export const IMPORT = [
 	AppRoutingModule,
@@ -46,15 +47,15 @@ export const PROVIDERS = [
 	}
 ];
 
-export const COMPONENTS = [ ProjectFormComponent ];
+export const COMPONENTS = [ProjectFormComponent, NotFoundComponent];
 
-export const CONTAINERS = [ AppComponent, ProjectsComponent ];
+export const CONTAINERS = [AppComponent, ProjectsComponent];
 
 @NgModule({
 	imports: IMPORT,
-	declarations: [ ...COMPONENTS, ...CONTAINERS ],
+	declarations: [...COMPONENTS, ...CONTAINERS],
 	providers: PROVIDERS,
-	entryComponents: [ ProjectFormComponent ],
-	bootstrap: [ AppComponent ]
+	entryComponents: [ProjectFormComponent],
+	bootstrap: [AppComponent]
 })
 export class AppModule {}

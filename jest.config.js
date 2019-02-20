@@ -14,7 +14,8 @@ module.exports = {
 	transform: {
 		'^.+\\.(tsx?|html)$': '<rootDir>/node_modules/jest-preset-angular/preprocessor.js'
 	},
-	testMatch: ['**/__tests__/**/*.+(ts|js)?(x)', '**/+(*.)+(spec|test).+(ts|js)?(x)'],
+	collectCoverageFrom: ['<rootDir>/client/app/**/*.{ts}', '!**/node_modules/**', '!<rootDir>/client/app/**/*-helper.{ts}'],
+	testMatch: ['<rootDir>/client/**/__tests__/**/*.+(ts|js)?(x)', '<rootDir>/client/**/+(*.)+(spec|test).+(ts|js)?(x)'],
 	testPathIgnorePatterns: ['/node_modules/', '<rootDir>/puppeteer/', '<rootDir>/server'],
 	moduleFileExtensions: ['ts', 'js', 'html'],
 	testResultsProcessor: 'jest-teamcity-reporter',

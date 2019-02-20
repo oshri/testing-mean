@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundComponent should compile 1`] = `
+<mean-not-found>
+  <div
+    fxfill=""
+  >
+    <div
+      class="message"
+      fxlayout="column"
+      fxlayoutalign="center center"
+    >
+      <p>
+        "Sorry ! the page you are looking for can't be found"
+      </p>
+      <button
+        class="back-btn"
+        color="accent"
+        mat-raised-button=""
+        routerlink="/"
+      >
+        Back to home
+      </button>
+    </div>
+  </div>
+</mean-not-found>
+`;
