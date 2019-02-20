@@ -50,11 +50,10 @@ class App {
 
 		this.app.use('/api', router);
 
-		// TODO: we need to build index.html static file with projectlogo and api version :)
-		// this.app.use('/', express.static(root('./public')));
-		// this.app.get('/*', (req: express.Request, res: express.Response) => {
-		// 	res.sendFile(root('./public/index.html'));
-		// });
+		this.app.use('/', express.static(root('./public')));
+		this.app.get('/*', (req: express.Request, res: express.Response) => {
+			res.sendFile(root('./public/index.html'));
+		});
 	}
 }
 
