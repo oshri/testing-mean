@@ -10,7 +10,7 @@
     "server:run": "nodemon",
     "server:build": "tsc -p server",
     "test:client": "jest --coverage --verbose --watchAll",
-    "test:client:ci": "NODE_ENV=test jest --runInBand --coverage --config ./jest.config.js --verbose --detectOpenHandles --forceExit",
+    "test:client:ci": "NODE_ENV=test jest --runInBand --coverage --config ./jest.config.js --verbose",
     "test:server:dev": "NODE_ENV=test jest --coverage --config ./jest.server.config.js --watchAll --verbose --forceExit",
     "test:server:ci": "NODE_ENV=test jest --runInBand --coverage --config ./jest.server.config.js --verbose --forceExit",
     "test-for-build": "jest --clearCache && jest --coverage",
